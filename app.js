@@ -1,38 +1,70 @@
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const app = express();
+const MongoClient = require('mongodb').MongoClient;
 
-// app.engine('mustache', mustacheExpress());
+const url = 'mongodb://localhost:27017/robots';
 
-var mongoRobo = require('mongodb').MongoClient;
-//
-var url = 'mongodb://localhost:27017/robots';
-//
 var findBrokeRobots = function(db, callback) {
-  // Get the documents collection
-  var collection = db.collection('robots');
-  // Insert some documents
-  collection.find({ "company" : null}).toArray(function(err, result) {
-    console.log("found ", result.length, " robots need work ")
+  var notForHire = db.collection('robots');
+
+  notForHire.find({"job" : null}).toArray(function(err) {
+    console.log("found", result.length, "users")
     callback(result);
   });
 }
-   res.render("unemplyed", {robots: foundEmployeed});
+var findAllRobots = function(db, callback) {
+  var notForHire = db.collection('robots');
+  notForHire.find().toArray(function(err, result) {
+    console.log("found ", result.length, "users")
+    callback(result);
   });
-});
-
-app.get("/unemployed", (req, res) => {
-  results.find({ job : null }).toArray(function(err, foundEmployeed) {
-    if (err) {
-      console.warn("Error finding robots robotdb", err);
-    }
-// // Use connect method to connect to the server
+}
 MongoClient.connect(url, function(err, db) {
-  console.log('error?', err);
-  console.log("Waters from Lake Minnetonka, I'm Alive!!");
-
-  findBrokeRobots(db, function() {
-    console.log("I have the waters of lake Minnetonka!!");
-    db.close();
+  console.log('error?' , err);
+  console.log("We have connected");
+  db.close();
   });
 });
+app.engine('mustache', mustacheExpress());
+
+app.set('view engine', 'mustache');
+app.set('views', __dirname + '/views');
+
+app.use(express.static('public'));
+
+app.get('/', function (req, res) {
+  res.send('Hello there It is now' + new Date()) + `<a href="http://localhost:3000/indexrobots">robot?</a>`
+});
+
+app.get("/indexrobots", function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+   findAllRobots(db, function(result) {
+     res.render('allRobos', {users : result} );
+   });
+ });
+});
+
+app.get('/unemployed', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+   findBrokeRobots(db, function(result) {
+     res.render('allRobos', {users : result} );
+   });
+ });
+});
+
+app.get('/robot/:id', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+   findAllRobots(db, function(result) {
+     let robot = result.find(function(broke){
+       return broke.username.toLowerCase() === req.params.id;
+     });
+     res.render('oneRobo', robot);
+   });
+ });
+});
+// // Use connect method to connect to the server
+
+    app.listen(3000, function (){
+    console.log('I have the waters of lake Minnetonka!!');
+  });
