@@ -2,30 +2,29 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="/robots.css">
   <meta charset="utf-8">
-  <title>Robot Directory</title>
-  <link rel="stylesheet" href="robot.css"/>
+  <title>Robots need Work</title>
 </head>
 
 <body>
-  <h1 class="header">Robot Directory</h1>
 
-  <div class = "wrap">
-      {{ #staff }}
-      <div class="profile">
-        <a href="/{{ username }}"/>
-        <div class = "photo">
-          <img src="{{ avatar }}">
-        </div>
-        <h2>{{ name }}</h2>
-        <p>{{ #job }} {{ job }}, {{ /job }}
-          {{ ^job }}<p class = "available">Available for hire</p>{{ /job }}
-          {{ company }}</p>
-        </div></a>
-      {{ /staff }}
+  <a class="header" href="http://localhost:3000/indexrobots">All Robots</a> <a href="http://localhost:3000/brokerobots">Robots Looking For Work</a>
+  <a href="http://localhost:3000/employedrobots">Emplyed Robots</a>
+  <div class="wrapper">
+    {{#users}}
+      <section class="box">
 
+        <a href="http://localhost:3000/robot/{{username}}"><img class="robotAvatars" src="{{avatar}}" alt="{{name}}"></a>
+        <h1 class="robotName">{{name}}</h1> {{ #job }} {{ job }}, {{ /job }} {{ ^job }}
+        <p class="available">available for hire</p>
+        {{ /job }}
+        <p>{{company}}</p>
+
+
+      </section>
+    {{/users}}
   </div>
-
 </body>
 
 </html>

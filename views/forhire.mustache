@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Employed Robots</title>
+  <link rel="stylesheet" href="robots.css"> </head>
+
+  <body>
+    <div class="container">
+      {{ #robots }}
+      <div class="results">
+        <div class="topbar">
+          <img src= {{ avatar }}>
+          <div class="details">
+            <h1><a href="/{{ username }}">{{ name }}</a></h1>
+            <div class="contact">
+              <div class="citywork">
+                <p>{{ #address.city }} {{ address.city }}, {{ /address.city }}{{ address.country }} | {{ #job }} {{ job }}, {{ company }} {{ /job }} {{ ^job }}
+                 <h3>Available For Hire</h3> {{ /job }}</p>
+              </div>
+              <p>{{ email }} | {{ phone }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="history">
+          <table>
+            <tr>
+              <th>Education</th>
+              <td>
+                <p>{{ university }}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>Skills</th>
+              <td>
+                <ul>
+                  {{ #skills }}
+                  <li>{{ . }}</li>
+                  {{ /skills }}
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      {{ /robots }}
+    </div>
+  </body>
+
+</html>

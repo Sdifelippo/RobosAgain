@@ -1,0 +1,57 @@
+#indexBody {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.available {
+  color: red;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+  padding-right: 0rem;
+  justify-content: space-between;
+}
+
+.box {
+  width: 13rem;
+  border-style: solid;
+  border-width: thin;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-right: 2rem;
+}
+
+
+}
+.profile {
+  display: flex;
+  justify-content: center;
+}
+.singleprofile {
+  display: flex;
+  justify-content: center;
+}
+.personalInfo {
+  margin-left: 20px
+}
+.profilePic {
+  border-style: solid;
+  border-width: thin;
+  padding: 18px;
+  border-radius: 100px;
+}
+.personalEdu {
+  text-align: center;
+}
+.robotName {
+  padding: 10px;
+}
+ul {
+  list-style-type: none;
+  line-height: 0px;
+}
