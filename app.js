@@ -21,7 +21,8 @@ var findAllRobots = function(db, callback) {
 }
 var findEmployedRobots = function(db, callback) {
   var notForHire = db.collection('robots');
-  notForHire.find({"company" : 'string' }).toArray(function(err, result) {
+  notForHire.find({"company" : {$ne: null}
+  }).toArray(function(err, result) {
     console.log("found", result.length, "users");
     callback(result);
   });
@@ -67,7 +68,7 @@ app.get('/brokerobots', function(req, res) {
 app.get('/employedrobots', function(req, res) {
   MongoClient.connect(url, function(err, db) {
    findEmployedRobots(db, function(result) {
-     res.render('allRobos', {users : result} );
+     res.render('employedrobots', {users : result} );
    });
  });
 });

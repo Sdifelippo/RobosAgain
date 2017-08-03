@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+  <link rel="stylesheet" href="/robots.css">
+  <meta charset="utf-8">
+  <title>Robots have Work</title>
+</head>
+
+<body>
+
+  <a class="header" href="http://localhost:3000/indexrobots">All Robots</a> <a href="http://localhost:3000/brokerobots">Robots Looking For Work</a>
+  <a href="http://localhost:3000/employedrobots">Employed Robots</a>
+  <div class="wrapper">
+    {{#users}}
+      <section class="box">
+
+        <a href="http://localhost:3000/robot/{{username}}"><img class="robotAvatars" src="{{avatar}}" alt="{{name}}"></a>
+        <h1 class="robotName">{{name}}</h1> {{ #job }} {{ job }}, {{ /job }} {{ ^job }}
+        <p class="available">available for hire</p>
+        {{ /job }}
+        <p>{{company}}</p>
+
+
+      </section>
+    {{/users}}
+  </div>
+</body>
+
+</html>
