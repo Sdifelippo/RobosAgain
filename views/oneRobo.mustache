@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="/robots.css">
-    <meta charset="utf-8">
-    <title>robit</title>
-  </head>
-  <body id="personalBody">
+
+<head>
+  <link rel="stylesheet" href="/robots.css">
+  <meta charset="utf-8">
+  <title>Robot Profile</title>
+</head>
+
+<body id="personalBody">
 
 
   <div class="singleprofile">
     <img class="profilePic" src="{{avatar}}" alt="{{name}}">
 
-  <div class="personalInfo">
-    <h1 class="personalName">{{name}}</h1>
-  <p>{{#address.city}}{{address.city}},{{/address.city}}{{^address.city}}{{/address.city}} {{address.country}} | {{#job}}
-        {{ job }}
-        {{ /job }}
-        {{ ^job }}
-        <p class="available">available for hire</p>
+    <div class="personalInfo">
+      <h1 class="personalName">{{name}}</h1>
+      <p>
+        {{#address.city}}{{address.city}},{{/address.city}}{{^address.city}}{{/address.city}} {{address.country}} |
+        {{#job}}
+          {{ job }} {{ /job }} {{ ^job }}
+          <p class="available">available for hire</p>
         {{/job}} {{company}}</p>
-    <p class="personalEmail">{{email}} | {{phone}}</p>
-  </div>
+      <p class="personalEmail">{{email}} | {{phone}}</p>
+    </div>
   </div>
 
   <div class="personalEdu">
     {{#university}}
-    <p><strong>Education</strong> {{university}}</p>
+      <p><strong>Education</strong> {{university}}</p>
     {{/university}}
     {{^university}}
     {{/university}}
@@ -33,12 +35,13 @@
 
     <strong>Skills</strong>
     <div class="skills">
-    {{ #skills }}
-    <p>{{ . }}</p>
-    {{ /skills }}
+      {{ #skills }}
+      <p>{{ . }}</p>
+      {{ /skills }}
     </div>
   </div>
 
-    <a href="http://localhost:3000/indexrobots">HOME</a>
-  </body>
+  <a href="http://localhost:3000/indexrobots">HOME</a>
+</body>
+
 </html>
