@@ -10,7 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
+    "express-validator": "^3.2.1",
     "mongodb": "^2.2.30",
-    "mustache-express": "^1.2.5"
+    "mongoose": "^4.10.8",
+    "mustache-express": "^1.2.5",
+    "passport": "^0.3.2"
   }
 }
